@@ -61,6 +61,8 @@ class MovimientosGenerator:
         flotantes = ['saldos', 'cargo']
         for numeric_col in flotantes:
             self.results_df[numeric_col] = self.results_df[numeric_col].apply(self.convertir_a_flotante)
+        self.results_df = self.results_df.reset_index()
+        self.results_df = self.results_df.sort_values(['date', 'index'])
 
         self.results_df = self.results_df.replace("", None)
         orden = ["date", "date_v", "desc", "codigo", "lugar", "suc_age", "num_op", "hora", "origen", "tipo", "cargo", "saldos"]
